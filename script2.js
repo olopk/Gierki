@@ -10,6 +10,15 @@ function start(){
     }
   }
   document.getElementById('main').innerHTML = karty;
+    for(i = 0; i < 12; i++){
+        var losowa = Math.floor(Math.random() * cards.length);
+        document.getElementById('kar'+i).style.backgroundImage = 'url(./img2/'+cards[losowa]+')';
+        cards.splice(losowa, 1);
+    }    
+    
 }
 
+
+
 window.onload = start;
+console.log(cards);

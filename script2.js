@@ -17,12 +17,39 @@ var clicking = (el, ix, arr) => {
 c.forEach(clicking);
 
 // prepare a function that will handle the main logic of the game.
-var oneVisible, flag;
+var oneVisible, flag , firstCard, counter;
+// the variable to check if there already is one card uncovered.
+counter = 0;
 oneVisible = false;
+
 var revealCard = (nr) => {
     if (oneVisible == false){
         $('#kar'+nr).css('background-image', 'url(img2/'+dealtCards[nr]+')');
         oneVisible = true;
+        //store the uncovered card in variable to comaprsion with the second one.
+        firstCard = nr;
+        console.log(nr);
+    }
+    else{
+        $('#kar'+nr).css('background-image', 'url(img2/'+dealtCards[nr]+')');
+        
+        if(dealtCards[nr] == dealtCards[firstCard]) {
+            // then we change the opacity of both card-divs to max. and increment the counter, but also we have to disable onClick event.
+           $('#kar'+nr).css('opacity', 0);
+           $('#kar'+firstCard).css('opacity', 0);
+            counter ++;
+        }
+        else{
+            // then we have to hide both cards, and increment the counter.
+            setTimeout(function(){
+                $('#kar'+nr).css('background-image', 'url(img2/karta.png');
+                $('#kar'+firstCard).css('background-image', 'url(img2/karta.png');
+            }, 1500);
+          
+            counter ++;
+            console.log(counter);
+        }
+        oneVisible = false;
     }
 }
 

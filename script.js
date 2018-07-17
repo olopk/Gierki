@@ -93,9 +93,6 @@ function sprawdz(nr){
   }
 }
 
-
-
-
 function start(){
 
   var kafelki = "";

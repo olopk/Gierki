@@ -1,8 +1,9 @@
+// define the password
 var haslo = "biednemu zawsze wiatr w oczy";
 haslo = haslo.toUpperCase();
-
+// empty var for the hide version of pass
 var haslo1 = "";
-
+// mistakes counter
 var ile_pomylek = 0;
 
 var litery = new Array(35);
@@ -42,21 +43,21 @@ litery[31] = "Y";
 litery[32] = "Z";
 litery[33] = "Ż";
 litery[34] = "Ź";
-
+// loop that prepares a hide version of pass
 for (i = 0; i < haslo.length; i++)
  {
     if(haslo.charAt(i) == " ")
       haslo1 = haslo1 + " ";
     else haslo1 = haslo1 + "-";
   }
-
+// creation of the new method, that changes the char of your choice in the string.
 String.prototype.zamien = function(miejsce, znak)
 {
   if(miejsce > this.length -1) return this.toString();
   else return this.substr(0, miejsce) + znak + this.substr(miejsce+1);
 }
 
-
+// the function that checks if the chosen letter is one of the letters in the pass.
 function sprawdz(nr){
   var flaga = false;
 
@@ -78,7 +79,6 @@ function sprawdz(nr){
     document.getElementById(element).style.background = "red";
     document.getElementById(element).style.cursor = "default";
     document.getElementById(element).setAttribute("onclick", ";");
-
     ile_pomylek++;
     document.getElementById('main-left').innerHTML = '<img src="img/s'+ile_pomylek+'.jpg"/>';
   }
@@ -91,8 +91,6 @@ function sprawdz(nr){
   if (ile_pomylek == 9) {
     document.getElementById('center').innerHTML = 'Przegrywasz, a ja wygrywam.</br></br></br><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>';
   }
-
-
 }
 
 
@@ -107,11 +105,7 @@ function start(){
     kafelki = kafelki + '<div class="kafelek" id="lit'+i+'" onclick="sprawdz('+i+')">'+litery[i]+'</div>';
     if((i+1)%7 == 0) kafelki = kafelki + '<div style="clear:both"></div>'
   }
-
   document.getElementById('center').innerHTML = kafelki;
-
-
   document.getElementById('haslo').innerHTML = haslo1;
 }
-
 window.onload = start;
